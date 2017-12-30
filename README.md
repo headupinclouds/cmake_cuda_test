@@ -2,6 +2,19 @@
 
 Simple test to illustrate `cuda_add_library()` failure with Xcode generator using non-standard `*.cc` extensions in combinatino wtih `set_source_files_properties(${gpu_source_files} PROPERTIES CUDA_SOURCE_PROPERTY_FORMAT OBJ)`.  Using the `*.cu` extensions works fine.
 
+
+### `*.cu` extensions work:
+```
+mkdir -p _builds/xcode2
+cmake -GXcode -H. -B_builds/xcode2 -DCMAKE_VERBOSE_MAKEFILE=ON -DCUDA_TOOLKIT_ROOT_DIR=/Developer/NVIDIA/CUDA-9.0 -DCUDA_EXAMPLE_USE_CC_EXT=OFF && cd _builds/xcode2 && cmake --build .
+```
+
+```
+** BUILD SUCCEEDED **
+```
+
+
+### `*.cc` extensions don't:
 ```
 mkdir -p _builds/xcode
 cmake -GXcode -H. -B_builds/xcode -DCMAKE_VERBOSE_MAKEFILE=ON -DCUDA_TOOLKIT_ROOT_DIR=/Developer/NVIDIA/CUDA-9.0 -DCUDA_EXAMPLE_USE_CC_EXT=ON && cd _builds/xcode && cmake --build .
@@ -19,13 +32,3 @@ cmake -GXcode -H. -B_builds/xcode -DCMAKE_VERBOSE_MAKEFILE=ON -DCUDA_TOOLKIT_ROO
 
 ```
 
-------
-
-```
-mkdir -p _builds/xcode2
-cmake -GXcode -H. -B_builds/xcode2 -DCMAKE_VERBOSE_MAKEFILE=ON -DCUDA_TOOLKIT_ROOT_DIR=/Developer/NVIDIA/CUDA-9.0 -DCUDA_EXAMPLE_USE_CC_EXT=OFF && cd _builds/xcode2 && cmake --build .
-```
-
-```
-** BUILD SUCCEEDED **
-```
