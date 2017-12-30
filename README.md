@@ -4,6 +4,7 @@ Simple test to illustrate `cuda_add_library()` failure with Xcode generator usin
 
 
 ### `*.cu` extensions work:
+Full log [here](https://github.com/headupinclouds/cmake_cuda_test/issues/1)
 ```
 mkdir -p _builds/xcode2
 cmake -GXcode -H. -B_builds/xcode2 -DCMAKE_VERBOSE_MAKEFILE=ON -DCUDA_TOOLKIT_ROOT_DIR=/Developer/NVIDIA/CUDA-9.0 -DCUDA_EXAMPLE_USE_CC_EXT=OFF && cd _builds/xcode2 && cmake --build .
@@ -15,6 +16,7 @@ cmake -GXcode -H. -B_builds/xcode2 -DCMAKE_VERBOSE_MAKEFILE=ON -DCUDA_TOOLKIT_RO
 
 
 ### `*.cc` extensions don't:
+Full log [here](https://github.com/headupinclouds/cmake_cuda_test/issues/2)
 ```
 mkdir -p _builds/xcode
 cmake -GXcode -H. -B_builds/xcode -DCMAKE_VERBOSE_MAKEFILE=ON -DCUDA_TOOLKIT_ROOT_DIR=/Developer/NVIDIA/CUDA-9.0 -DCUDA_EXAMPLE_USE_CC_EXT=ON && cd _builds/xcode && cmake --build .
